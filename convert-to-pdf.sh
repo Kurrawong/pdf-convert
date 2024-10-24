@@ -5,7 +5,7 @@
 ###################################
 
 # Loop over all files in the /data directory
-for file in /data/*; do
+for file in /inputs/*; do
 	# Check if the file is not a PDF
 	if [ "${file##*.}" != "pdf" ]; then
 		# Extract the filename with extension
@@ -13,10 +13,10 @@ for file in /data/*; do
 		filename_no_ext=$(basename "$file" | cut -d. -f1)
 
 		# Convert the file to PDF
-		libreoffice --headless --convert-to pdf "$file" --outdir "/data"
+		libreoffice --headless --convert-to pdf "$file" --outdir "/outputs"
 
 		# Rename it
-		mv "/data/${filename_no_ext}.pdf" "/data/${filename_ext}.pdf"
+		mv "/outputs/${filename_no_ext}.pdf" "/outputs/${filename_ext}.pdf"
 	fi
 done
 
